@@ -43,6 +43,7 @@ func GetPackageInfo(purls []packageurl.PackageURL) ([]api.PackageDetail, []api.P
 			ContentType("application/json").
 			// TODO: could use the full auth setup that we do in the tidelift cli
 			Header("Authorization", "Bearer "+os.Getenv("TIDELIFT_API_KEY")).
+			Header("User-Agent", "tidelift-sbom-info/0.1").
 			Fetch(context.Background()); err != nil {
 			log.Warn(fmt.Sprintf("problem fetching package info %s ", err))
 		}
@@ -65,6 +66,7 @@ func GetReleaseInfo(purls []packageurl.PackageURL) ([]api.ReleaseDetail, []Packa
 			ContentType("application/json").
 			// TODO: could use the full auth setup that we do in the tidelift cli
 			Header("Authorization", "Bearer "+os.Getenv("TIDELIFT_API_KEY")).
+			Header("User-Agent", "tidelift-sbom-info/0.1").
 			Fetch(context.Background()); err != nil {
 			log.Warn(fmt.Sprintf("problem fetching package info %s ", err))
 		}

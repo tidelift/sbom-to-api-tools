@@ -1,7 +1,7 @@
 This repository contains some examples of using the Tidelift APIs to gather
 information about open source library components.
 
-The examples all use a cyclonedx sbom as their entry point and then provide
+The examples all use a CycloneDX sbom (in JSON format) as their entry point and then provide
 different outputs depending on the specific example.
 
 Tagged releases are published on GitHub at
@@ -10,11 +10,11 @@ run in your environment.
 
 ## Current Commands
 
-* `tidelift-sbom-analyzer`: This takes a cyclonedx file as the first argument and
+* `tidelift-sbom-analyzer`: This takes a CycloneDX JSON file as the first argument and
 then outputs a CSV file with Tidelift's recommendations about the packages in the
 SBOM. Takes an optional argument of `-o output.csv` to write the output to a file.
 
-* `tidelift-sbom-vulnerability-reporter`: This takes a cyclonedx file as the first
+* `tidelift-sbom-vulnerability-reporter`: This takes a CycloneDX JSON file as the first
 argument and then outputs a JSON file with information about any known vulnerabilities
 in releases that are listed in the SBOM. Takes an optional argument of
 `-o output.json` to write the output to a file.

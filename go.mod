@@ -2,7 +2,7 @@ module github.com/tidelift/tidelift-sbom-info
 
 go 1.22
 
-require github.com/CycloneDX/cyclonedx-go v0.8.0 // direct
+require github.com/CycloneDX/cyclonedx-go v0.9.0 // direct
 
 require github.com/carlmjohnson/requests v0.23.5 // direct
 

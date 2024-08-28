@@ -43,7 +43,7 @@ func main() {
 
 	if printVersion {
 		fmt.Println(version)
-		os.Exit(1)
+		os.Exit(0)
 	}
 
 	if _, keyExists := os.LookupEnv("TIDELIFT_API_KEY"); !keyExists {

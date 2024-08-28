@@ -15,11 +15,19 @@ import (
 	utils "github.com/tidelift/tidelift-sbom-info/internal/utils"
 )
 
+// This gets overwritten by goreleaser with the git tag, during a release.
+var (
+	version = "dev"
+)
+
 func main() {
 	var debug bool
 	var outputFile string
+	var printVersion bool
+
 	flag.BoolVar(&debug, "debug", false, "Show debug logging")
 	flag.StringVar(&outputFile, "output", "", "Write output to a file (defaults to stdout)")
+	flag.BoolVar(&printVersion, "version", false, "Show version information")
 
 	flag.Usage = func() {
 		fmt.Fprintln(flag.CommandLine.Output(), "Display a CSV containing recommendations from Tidelift for the packages in an SBOM.")
@@ -32,6 +40,11 @@ func main() {
 	}
 
 	flag.Parse()
+
+	if printVersion {
+		fmt.Println(version)
+		os.Exit(1)
+	}
 
 	if _, keyExists := os.LookupEnv("TIDELIFT_API_KEY"); !keyExists {
 		log.Fatalf("Error: TIDELIFT_API_KEY environment variable is required.")

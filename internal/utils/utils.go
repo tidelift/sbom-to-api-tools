@@ -30,8 +30,8 @@ type releaseLookupResponse struct {
 }
 
 func GetPackageInfo(purls []packageurl.PackageURL) ([]api.PackageDetail, []api.Package) {
-	var packageInfo []api.PackageDetail
-	var missingPackages []api.Package
+	packageInfo := []api.PackageDetail{}
+	missingPackages := []api.Package{}
 
 	for start := 0; start < len(purls); start += CHUNK_SIZE {
 		purlStrings := chunkOfPurlStrings(purls, start, CHUNK_SIZE)
@@ -54,8 +54,9 @@ func GetPackageInfo(purls []packageurl.PackageURL) ([]api.PackageDetail, []api.P
 }
 
 func GetReleaseInfo(purls []packageurl.PackageURL) ([]api.ReleaseDetail, []PackageRelease) {
-	var releaseInfo []api.ReleaseDetail
-	var missingReleases []PackageRelease
+	releaseInfo := []api.ReleaseDetail{}
+	missingReleases := []PackageRelease{}
+
 	for start := 0; start < len(purls); start += CHUNK_SIZE {
 		purlStrings := chunkOfPurlStrings(purls, start, CHUNK_SIZE)
 

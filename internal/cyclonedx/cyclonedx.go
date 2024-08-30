@@ -43,7 +43,7 @@ func decodeCyclonedx(filename string) (*cdx.BOM, error) {
 }
 
 func extractSupportedPurls(bom *cdx.BOM) ([]packageurl.PackageURL, error) {
-	var purls []packageurl.PackageURL
+	purlMap := map[string]packageurl.PackageURL{}
 
 	if bom.Components == nil {
 		log.Warn("CycloneDX file does not have any components")
@@ -70,10 +70,17 @@ func extractSupportedPurls(bom *cdx.BOM) ([]packageurl.PackageURL, error) {
 			continue
 		}
 
+		purlMap[purl.String()] = purl
+	}
+
+	purls := make([]packageurl.PackageURL, 0, len(purlMap))
+
+	for _, purl := range purlMap {
 		purls = append(purls, purl)
 	}
 
 	log.Debug(fmt.Sprintf("Found %d purls\n", len(purls)))
+
 	return purls, nil
 }
 

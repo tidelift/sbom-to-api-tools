@@ -1,6 +1,6 @@
 module github.com/tidelift/tidelift-sbom-info
 
-go 1.22
+go 1.23
 
 require github.com/CycloneDX/cyclonedx-go v0.9.0 // direct
 

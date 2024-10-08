@@ -14,18 +14,22 @@ import (
 	"github.com/tidelift/tidelift-sbom-info/internal/utils"
 )
 
-func SupportedPurlsFromBomFile(filename string) ([]packageurl.PackageURL, error) {
+func SupportedPurlsFromBomFile(filename string) (string, []packageurl.PackageURL, error) {
 	bom, err := decodeCyclonedx(filename)
 	if err != nil {
-		return nil, err
+		return "", nil, err
 	}
 
 	purls, err := extractSupportedPurls(bom)
 	if err != nil {
-		return nil, err
+		return "", nil, err
 	}
 
-	return purls, nil
+	if bom.Metadata == nil || bom.Metadata.Component == nil {
+		log.Warn("CycloneDX file does not have any metadata")
+		return "", purls, nil
+	}
+	return bom.Metadata.Component.Name, purls, nil
 }
 
 func decodeCyclonedx(filename string) (*cdx.BOM, error) {

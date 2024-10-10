@@ -62,7 +62,7 @@ func main() {
 		log.SetLevel(log.WarnLevel)
 	}
 
-	purls, err := cyclonedx.SupportedPurlsFromBomFile(flag.Arg(0))
+	_, purls, err := cyclonedx.SupportedPurlsFromBomFile(flag.Arg(0))
 	if err != nil {
 		log.Fatalf("Error: %s", err)
 	}

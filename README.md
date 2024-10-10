@@ -19,6 +19,14 @@ argument and then outputs a JSON file with information about any known vulnerabi
 in releases that are listed in the SBOM. Takes an optional argument of
 `-o output.json` to write the output to a file.
 
+* `tidelift-sbom-reporter`: This takes a CycloneDX JSON file as the first argument and
+then outputs a JSON file with information about any potential issue in releases that are
+listed in the SBOM. The format of the output is the same as the Tidelift [All Projects
+Violations](https://support.tidelift.com/hc/en-us/articles/24883174701332-All-projects-violations-report)
+report. Issues shown include not just vulnerabilities, but also issues such as using
+end-of-life or deprecated software. Takes an optional argument of `-o output.json` to
+write the output to a file.
+
 ## Contributing
 
 While this is primarily intended to guide others in the use of the Tidelift API,
